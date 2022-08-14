@@ -1,0 +1,28 @@
+<button class="btn btn-warning mt-5" *ngIf="showBtn==true" (click)="checkPosts()">Get Posts</button>
+<button class="btn btn-secondary mt-5" *ngIf="hideBtn==true" (click)="hidePosts()">Hide Posts</button>
+
+<table class="table border bg-dark text-light mt-2 shadow-lg ">
+  <thead>
+    <tr class="bg-warning text-dark text-center">
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Show Details</th>
+
+    </tr>
+  </thead>
+  <tbody *ngIf="thereIsPost;else elseBlock">
+    <tr class="text-center" *ngFor="let post of posts">
+      <th scope="row">{{post.id}}</th>
+      <td>{{post.title}}</td>
+      <td>{{post.description}}</td>
+
+      <td>
+        <a class="btn btn-success btn-sm" [routerLink]="['/posts/details',post.id]" routerLinkActive="router-link-active" >Details</a>
+      </td>
+    </tr>
+
+
+  </tbody>
+  <ng-template #elseBlock>لايوجد بيانات للعرض حاليا </ng-template>
+</table>

@@ -1,0 +1,27 @@
+<button class="btn btn-warning mt-5" (click)="getInfo()">Get Data From Api =><span class="badge bg-danger">{{apiLink}}</span></button>
+<button class="btn btn-success mx-2 mt-5" *ngIf="table_form == true;" (click)="jsonForm()">Show Data In Json Form</button>
+<button class="btn btn-dark mx-2 mt-5" *ngIf="table_form == false;" (click)="tableForm()">Show Data In Table Form</button>
+<table class="table border bg-dark text-light" *ngIf="table_form;else elseBlock;">
+  <thead>
+    <tr class="bg-warning text-dark text-center">
+      <th scope="col">userId</th>
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">body</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr class="text-center" *ngFor="let userpost of userPosts">
+      <th scope="row">{{userpost.userId}}</th>
+      <td>{{userpost.id}}</td>
+      <td>{{userpost.title}}</td>
+      <td>{{userpost.body}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #elseBlock>
+  <pre class="mt-2 bg-dark text-success p-3">{{userPosts|json}}</pre>
+</ng-template>
+
+
